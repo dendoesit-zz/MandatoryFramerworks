@@ -1,0 +1,12 @@
+.container 
+  .jumbotron
+    h1 Blog
+      p This is a new page specifically created to teach people different stuff. We focus a lot on making great tutorials that everyone can use at a point.
+      
+      
+      .row
+        .col-md-6
+         div(ng-include="'/partials/main/courses'")
+        .col-md-6
+          div(ng-include="'/partials/main/new-courses'")
+      
