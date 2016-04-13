@@ -20,3 +20,10 @@ p{
 .panel{
     font-size:25px;
 }
+
+.toast-top-right{
+    top: 70px;
+}
+.toast-success{
+    background-color: grey;
+}

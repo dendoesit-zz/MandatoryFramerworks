@@ -1,47 +1,18 @@
 var express = require('express');
-var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
-
 
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 var app = express();
-var config = {
-    rootPath: __dirname
-}
 
-app.set('views', __dirname + '/server/views');
-app.set('view engine', 'jade');
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
+var config = require('./server/config/config')[env];
 
-app.use(express.static(__dirname + '/public'));
+require('./server/config/express')(app, config);
 
- app.get('/partials/*', function(req, res){
-    res.render('../../public/app/' + req.params[0]);
-})
+require('./server/config/mongoose')(config);
 
+require('./server/config/passport')();
 
-app.get('*', function(req,res){
-    res.render('index');
-});
+require('./server/config/routes')(app);
 
-if(env === 'development') {
-    mongoose.connect('mongodb://localhost/frameworks');
-}else{
-    mongoose.connect('mongodb://dan:secret@ds015720.mlab.com:15720/frameworks');
-}
-
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection erorr.....'));
-db.once('open', function callback() {
-    console.log('frameworks db opened');
-});
-
-
-var port = process.env.PORT || 3030;
-app.listen(port);
-console.log('Listening on port ' + port + '...');
-
-//require('./server/config/express')(app, config);
-//require('./server/config/mongoose')(config);
+app.listen(config.port);
+console.log('Listening on port ' + config.port + '...');

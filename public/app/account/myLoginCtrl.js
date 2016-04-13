@@ -1,5 +1,21 @@
-angular.module('app').controller('myLoginCtrl', function ($scope) {
+angular.module('app').controller('myLoginCtrl', function ($scope, $http, mvIdentity, mvNotifier, mvAuth, $location) {
+    $scope.identity = mvIdentity;
     $scope.signin = function (username, password) {
-        console.log("I'm logged in");
+        mvAuth.authenticateUser(username, password).then(function(success){
+            if(success){
+                mvNotifier.notify('Glory !! You are in');
+            } else {
+                mvNotifier.notify('Those are not the credentials we are looking for ');
+            }
+        });     
     }
-})
+    $scope.signout = function() {
+        mvAuth.logoutUser().then(function(){
+            $scope.username = "";
+            $scope.password = "";
+            mvNotifier.notify('You have succesfully signed out!');
+            $location.path('/');
+        })
+    }
+});
+

@@ -1,0 +1,10 @@
+.container 
+  table.table
+    button.btn.btn-primary.pull-right(ng-click="CreateUser") Create new user
+    tr(ng-repeat="user in users")
+      td {{user.firstName}}
+      td {{user.lastName}}
+      td
+        button.btn.btn-warning(ng-click="EditUser") Edit
+      td
+        button.btn.btn-danger(ng-click="DeleteUser") Delete

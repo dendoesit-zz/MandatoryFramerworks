@@ -10,10 +10,10 @@
     "type": "git",
     "url": "git+https://github.com/dendoesit/MandatoryFramerworks.git"
   },
-    "engines":{
-        "node":"4.2.x",
-        "npm": "2.14.x"
-    },
+  "engines": {
+    "node": "4.2.x",
+    "npm": "2.14.x"
+  },
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -23,11 +23,19 @@
   "dependencies": {
     "body-parser": "^1.15.0",
     "bower": "^1.7.7",
+    "cookie-parser": "^1.4.1",
     "express": "^4.13.4",
+    "express-session": "^1.13.0",
     "jade": "^1.11.0",
     "mongodb": "^2.1.14",
     "mongoose": "^4.4.11",
     "node": "0.0.0",
-    "password": "^0.1.1"
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "password": "^0.1.1",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "crypto": "0.0.3"
   }
 }
