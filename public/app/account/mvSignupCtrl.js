@@ -1,9 +1,12 @@
-angular.module('app').controller('mvSignupCtrl', function($scope, mvUser, mvNotifier, $location, mvAuth){
+angular
+    .module('app')
+    .controller('mvSignupCtrl', 
+                function($scope, mvUser, mvNotifier, $location, mvAuth){
     
     $scope.signup = function() {
         var newUserData = {
             username : $scope.email,
-            passowrd: $scope.password,
+            password: $scope.password,
             firstName: $scope.fname,
             lastName: $scope.lname
         };
@@ -13,6 +16,7 @@ angular.module('app').controller('mvSignupCtrl', function($scope, mvUser, mvNoti
             $location.path('/');
         }, function(reason){
             mvNotifier.error(reason);
+            
         })
     }
 })

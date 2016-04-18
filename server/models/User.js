@@ -46,3 +46,4 @@ function createDefaultUsers() {
 }
 
 exports.createDefaultUsers = createDefaultUsers;
+exports.User = User;

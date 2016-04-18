@@ -2,7 +2,8 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var localStrategy = require('passport-local').Strategy;
 var User = mongoose.model('User');
-
+var express = require('express');
+var router = express.Router();
 
 module.exports = function () {
     passport.use(new localStrategy(

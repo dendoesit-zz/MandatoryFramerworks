@@ -26,7 +26,7 @@ angular.module('app').config(function ($routeProvider, $locationProvider) {
         .when('/admin/content', {
             templateUrl: '/partials/admin/contentlist',
             controller: 'mvContentListCtrl',
-            resolve:routeRoleChecks.admin
+            resolve: routeRoleChecks.admin
         });
 });
 

@@ -1,14 +1,18 @@
 var auth = require('./auth');
-var users = require('../controllers/users');
 var mongoose = require('mongoose');
-var User = mongoose.model('User');
+var express = require('express');
+var users = require('../controllers/users');
+
 
 
 module.exports = function (app) {
 
     app.get('/api/users', auth.requiresRole('admin'), users.getUsers);
-    app.post('/api/users', users.createUser);
-
+    app.post('/api/users', users.createUser, users.updateUser);
+    app.delete('/api/users/:id', users.deleteUser);
+    app.get('/api/users/:id', users.editUser);
+    app.put('/api/users/:id', users.updateUser);
+    
     app.get('/partials/*', function (req, res) {
         res.render('../../public/app/' + req.params[0]);
     });
@@ -25,4 +29,5 @@ module.exports = function (app) {
             bootstrappedUser: req.user
         });
     });
+    
 };

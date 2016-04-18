@@ -36,6 +36,8 @@
     "path": "^0.12.7"
   },
   "devDependencies": {
-    "crypto": "0.0.3"
+    "crypto": "0.0.3",
+    "express-router": "0.0.1",
+    "router": "^1.1.4"
   }
 }

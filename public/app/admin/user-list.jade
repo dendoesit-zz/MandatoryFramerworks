@@ -1,10 +1,58 @@
 .container 
   table.table
-    button.btn.btn-primary.pull-right(ng-click="CreateUser") Create new user
+    thead
+      td 
+        h3 Email
+      td 
+        h3 Password
+      td 
+        h3 First Name
+      td 
+        h3 Last Name
     tr(ng-repeat="user in users")
+      td {{user.username}}
+      td {{user.password}}
       td {{user.firstName}}
-      td {{user.lastName}}
+      td {{user.lastName}} 
       td
-        button.btn.btn-warning(ng-click="EditUser") Edit
+        button.btn.btn-warning(data-toggle="modal" ng-click="openEditUserModal(user._id)" data-target="#modalUser" ) Edit
       td
-        button.btn.btn-danger(ng-click="DeleteUser") Delete
+        button.btn.btn-danger(ng-click="deleteUser(user._id)") Delete
+    tr
+      td
+        input.form-controler(ng-model="user.username")
+      td
+        input.form-controler(ng-model="user.password")
+      td
+        input.form-controler(ng-model="user.firstName")
+      td
+        input.form-controler(ng-model="user.lastName")
+      td
+        button.btn.btn-primary(ng-click="signup()") Add Contact
+      td
+        button.btn.btn-info(ng-click="updateUser()") Update
+        
+    #modalUser.modal.fade(tabindex = "0" role='dialog')
+     .modal-dialog
+        .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true')
+          h4.modal-title {{ modalTitle }} 
+        .modal-body
+          form
+            .form-group
+              label(for='username') Username
+              input#username.form-control(type='text', ng-model='user.username', placeholder='Email')
+            .form-group
+              label(for='fname') First Name
+              input#name.form-control(type='text', ng-model='user.firstName', placeholder='Name')
+            .form-group
+              label(for='lname') Last Name
+              input#name.form-control(type='text', ng-model='user.lastName', placeholder='Name')
+            .form-group
+              label(for='password') Password
+              input#password.form-control(type='password', ng-model='user.password', placeholder='Password')
+        .modal-footer
+            button.btn.btn-default(type='button', data-dismiss='modal') Close
+            button.btn.btn-primary(type='button', ng-click='saveUser()', data-dismiss='modal') Save

@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
+// var usersRoutes = require('../config/userRoute');
 
 
 
@@ -18,6 +19,6 @@ module.exports = function (app, config) {
     app.use(passport.initialize());
     app.use(passport.session());
     app.use(express.static(config.rootPath + '/public'));
-
+    // app.use('/admin/users', usersRoutes);
 }
 
