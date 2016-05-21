@@ -1,5 +1,8 @@
 var mongoose = require('mongoose');
 var userModel = require('../models/User');
+var tagModel = require('../models/Tag');
+var categoryModel = require('../models/Category');
+var contentModel = require('../models/Content');
 var crypto = require('crypto');
 
 module.exports = function (config) {
@@ -12,6 +15,9 @@ module.exports = function (config) {
     });
 
     userModel.createDefaultUsers();
+    tagModel.createDefaultTags();
+    categoryModel.createDefaultCategories();
+    contentModel.createDefaultContents();
 };
 
 

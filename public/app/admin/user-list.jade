@@ -29,8 +29,7 @@
         input.form-controler(ng-model="user.lastName")
       td
         button.btn.btn-primary(ng-click="signup()") Add Contact
-      td
-        button.btn.btn-info(ng-click="updateUser()") Update
+      
         
     #modalUser.modal.fade(tabindex = "0" role='dialog')
      .modal-dialog
@@ -55,4 +54,4 @@
               input#password.form-control(type='password', ng-model='user.password', placeholder='Password')
         .modal-footer
             button.btn.btn-default(type='button', data-dismiss='modal') Close
-            button.btn.btn-primary(type='button', ng-click='saveUser()', data-dismiss='modal') Save
+            button.btn.btn-primary(type='button', ng-click='updateUser()', data-dismiss='modal') Save

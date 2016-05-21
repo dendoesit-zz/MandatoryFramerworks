@@ -53,15 +53,12 @@ angular
                 console.log($scope.user);
             });
         };
-        $scope.saveUser = function () {
+        $scope.updateUser = function () {
             console.log('this is the user we are trying to save');
-            console.log($scope.user);
-            usersService.saveUser($scope.user).then(function () {
-                mvNotifier.notify('User updated!');
-                refresh();
+            $http.put('/api/users/' + $scope.user._id, $scope.user);
             console.log('we tried to save the new user');
                 console.log($scope.user);
-            });
-        };
+            refresh();
+            };
     });
 })();

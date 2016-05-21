@@ -1,9 +1,53 @@
-.container
-  table.table.table-hover.table-striped.table-condensed
+.container 
+  table.table
     thead
-      tr
-        th Title
-        th Publish Date
-      tbody
-        tr(ng-repeat="content in contents")
-          td {{course.title}}
+      td 
+        h4 Content Name
+      td
+        h4 Content Body
+      td
+        h4 Tags
+      td
+        h4 Category
+    tr(ng-repeat="content in contents")
+      td {{ content.title }}
+      td {{ content.body }}
+      td {{ content.tags }}
+      td {{ content.category }}
+      td
+        button.btn.btn-warning(data-toggle="modal" ng-click="edit(content._id)" data-target="#modalTag" ) Edit
+      td
+        button.btn.btn-danger(ng-click="delete(content._id)") Delete
+    tr
+      td
+        input.form-controler(ng-model="content.title")
+      td
+        input.form-controler(ng-model="content.body")
+      td
+      td
+        select.form-controler(ng-model="content.category")
+        button.btn.btn-primary(ng-click="add()") Add Content  
+    #modalTag.modal.fade(tabindex = "0" role='dialog')
+     .modal-dialog
+        .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true')
+          h4.modal-title {{ modalTitle }} 
+        .modal-body
+          form
+            .form-group
+              label(for='title') Content Title
+              input#username.form-control(type='text', ng-model='content.title', placeholder='text')
+            .form-group
+              label(for='body') Content Body
+              input#username.form-control(type='text', ng-model='content.body', placeholder='text')
+            .form-group
+              label(for='tags') Content Tags
+              input.form-control(type='checkbox', ng-model='content.tags', placeholder='text')
+              .form-group
+              label(for='categories') Content Categories
+              input.form-control(type='checkbox', ng-model='content.category', placeholder='text')
+        .modal-footer
+            button.btn.btn-default(type='button', data-dismiss='modal') Close
+            button.btn.btn-primary(type='button', ng-click='update()', data-dismiss='modal') Save

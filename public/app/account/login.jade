@@ -16,8 +16,12 @@
          b.caret
        ul.dropdown-menu
          li(ng-show="identity.currentUser.isAdmin()")
-            a(href="/admin/addcourse") Add Course
+            a(href="/admin/contents") Content List
          li(ng-show="identity.currentUser.isAdmin()")
            a(href="/admin/users") User Admin
+         li(ng-show="identity.currentUser.isAdmin()")
+           a(href="/admin/tags") Tags
+         li(ng-show="identity.currentUser.isAdmin()")
+           a(href="/admin/categories") Categories
          li
            a(href="", ng-click="signout()") Sign Out

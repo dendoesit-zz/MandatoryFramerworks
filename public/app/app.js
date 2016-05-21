@@ -23,9 +23,19 @@ angular.module('app').config(function ($routeProvider, $locationProvider) {
             templateUrl: '/partials/account/signup',
             controller: 'mvSignupCtrl'
         })
-        .when('/admin/content', {
-            templateUrl: '/partials/admin/contentlist',
+        .when('/admin/contents', {
+            templateUrl: '/partials/admin/content-list',
             controller: 'mvContentListCtrl',
+            resolve: routeRoleChecks.admin
+        })
+        .when('/admin/tags', {
+            templateUrl: '/partials/admin/tag-list',
+            controller: 'mvTagListCtrl',
+            resolve: routeRoleChecks.admin
+        })
+        .when('/admin/categories', {
+            templateUrl: '/partials/admin/category-list',
+            controller: 'mvCategoryListCtrl',
             resolve: routeRoleChecks.admin
         });
 });

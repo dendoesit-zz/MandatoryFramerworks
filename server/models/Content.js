@@ -1,19 +1,25 @@
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
-var ContentSchema = mongoose.Schema({
+var contentSchema = new Schema({
     title: String,
-    body: String
+    body: String,
+    tags: Array,
+    category: Array
 });
 
-function createDefaultContent() {
+var Content = mongoose.model('Content', contentSchema, 'Contents');
+
+function createDefaultContents() {
     Content.find({}).exec(function (err, collection) {
         if(collection.length === 0) {
-            Content.creat({
+            Content.create({
                 title: 'First Content added',
                 body: 'This is the first thing we managed to add'
             });
         }
-    })
+    });
 }
 
-exports.createDefaultContent = createDefaultContent;
+exports.createDefaultContents = createDefaultContents;
+exports.Content = Content;

@@ -1,0 +1,31 @@
+.container 
+  table.table
+    thead
+      td 
+        h3 Tag Name
+    tr(ng-repeat="tag in tags")
+      td {{ tag.name }}
+      td
+        button.btn.btn-warning(data-toggle="modal" ng-click="edit(tag._id)" data-target="#modalTag" ) Edit
+      td
+        button.btn.btn-danger(ng-click="deleteTag(tag._id)") Delete
+    tr
+      td
+        input.form-controler(ng-model="tag.name")
+        button.btn.btn-primary(ng-click="addTag()") Add Tag
+      
+    #modalTag.modal.fade(tabindex = "0" role='dialog')
+     .modal-dialog
+        .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true')
+          h4.modal-title {{ modalTitle }} 
+        .modal-body
+          form
+            .form-group
+              label(for='name') Tag Name
+              input#username.form-control(type='text', ng-model='tag.name', placeholder='text')
+        .modal-footer
+            button.btn.btn-default(type='button', data-dismiss='modal') Close
+            button.btn.btn-primary(type='button', ng-click='updateTag()', data-dismiss='modal') Save

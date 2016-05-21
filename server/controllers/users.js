@@ -47,19 +47,33 @@ exports.deleteUser = function (req, res, next) {
 };
 exports.editUser = function (req, res, next) {
     console.log("editing user right now");
-    User.findOne({_id: req.params.id}, function(err, data) {
-    res.json(data);
-  });
+    User.findOne({
+        _id: req.params.id
+    }, function (err, data) {
+        res.json(data);
+    });
 };
 
 exports.updateUser = function (req, res, next) {
-    var query = {_id: req.params.id};
-    console.log(query);
-    User.findOneAndUpdate(query, req.body, function (err, data) {
-        if (err) {
-            res.json({err: err});
-        } else {
-            res.json({err: false});
+    var id = req.params.id;
+    console.log(req.body.username);
+    console.log(req.body.firstName);
+    console.log(req.body.lastName);
+    User.findOneAndUpdate({ _id : req.params.id},
+                          {$set: {
+            username: req.body.username,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName
         }
-    });
+            },
+                          {new: true
+            },
+        function (err, doc) {
+            if (err) {
+                console.log("smthing went wrong");
+            }
+            console.log("this is our doc" + doc);
+        }
+        );
+
 };
